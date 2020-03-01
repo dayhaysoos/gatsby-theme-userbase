@@ -1,4 +1,4 @@
-require("dotenv").config({
+require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
@@ -10,9 +10,8 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
-    `gatsby-theme-userbase-auth`,
-        {
-      resolve: "gatsby-plugin-userbase",
+    {
+      resolve: 'gatsby-theme-userbase-auth',
       options: {
         APP_ID: process.env.USERBASE_APP_ID,
       },
