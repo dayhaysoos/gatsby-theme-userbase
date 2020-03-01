@@ -1,0 +1,9 @@
+{
+  "name": "gatsby-theme-userbase",
+  "private": true,
+  "author": "Nick DeJesus",
+  "workspaces": [
+    "examples/*",
+    "packages/*"
+  ]
+}
