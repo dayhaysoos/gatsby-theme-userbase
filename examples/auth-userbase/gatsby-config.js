@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -6,6 +10,13 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-theme-userbase-auth`,
+        {
+      resolve: "gatsby-plugin-userbase",
+      options: {
+        APP_ID: process.env.USERBASE_APP_ID,
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {

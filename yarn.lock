@@ -5572,6 +5572,14 @@ gatsby-plugin-theme-ui@^0.3.0:
   resolved "https://registry.yarnpkg.com/gatsby-plugin-theme-ui/-/gatsby-plugin-theme-ui-0.3.0.tgz#ab84216536ae45abe09a6edf24156b9dbf50d6a5"
   integrity sha512-Q2tS8EeYMy7AAtt6hvDtEsd1uwrLMjkDNqabyXhAo38AFoWQ0oKtq9u1YqbiRvp1TK06pAMPQQ3to48LAqc9Cw==
 
+gatsby-plugin-userbase@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-userbase/-/gatsby-plugin-userbase-1.0.1.tgz#64f7b60d8b42e11b6490431f83453425f8106f6a"
+  integrity sha512-L+wNsU13HiTp1lOX4w353dA65dZHtNZ8+VUiAsQ34pYbsk557lxk2mfzs2LgRi38cO/jw6UucmHbCwwKwE+R0w==
+  dependencies:
+    dotenv "^8.2.0"
+    userbase-js "^1.0.0"
+
 gatsby-react-router-scroll@^2.1.22:
   version "2.1.22"
   resolved "https://registry.yarnpkg.com/gatsby-react-router-scroll/-/gatsby-react-router-scroll-2.1.22.tgz#588b4a23004997481082d89fc4dd746f6a356ab5"
@@ -11937,7 +11945,7 @@ use@^3.1.0:
   resolved "https://registry.yarnpkg.com/use/-/use-3.1.1.tgz#d50c8cac79a19fbc20f2911f56eb973f4e10070f"
   integrity sha512-cwESVXlO3url9YWlFW/TA9cshCEhtu7IKJ/p5soJ/gGpj7vbvFrAY/eIioQ6Dw23KjZhYgiIo8HOs1nQ2vr/oQ==
 
-userbase-js@^1.2.0:
+userbase-js@^1.0.0, userbase-js@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/userbase-js/-/userbase-js-1.2.0.tgz#e93827c6aa7f2513dbcd46ae26b0b29cc99a68f2"
   integrity sha512-UDTYT/UBsChKXzE3nWkKOQveijPJLN2DmRRkMVo+5fsEOwBTLuPmK6pvhHZDPSiPhyZN1AhYhKCI+6cBD6XZPA==
