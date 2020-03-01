@@ -1,8 +1,15 @@
 /**@jsx jsx */
-import { jsx, Box } from "theme-ui";
+import { jsx, Box } from 'theme-ui'
+import { useContext } from 'react'
+import LoginForm from '../components/login-form'
+import Layout from '../components/layout'
 
 const Login = () => {
-  return <Box>Hi</Box>;
-};
+  return (
+    <Box sx={{ maxWidth: 300, margin: '0 auto' }}>
+      <LoginForm />
+    </Box>
+  )
+}
 
-export default Login;
+export default Login
