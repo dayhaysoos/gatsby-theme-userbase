@@ -35,20 +35,21 @@ export const UserbaseProvider = ({ children, appId }) => {
   const resetUser = () => dispatch({ type: 'resetUser' })
 
   useEffect(() => {
-    const initialize = async () => {
-      if (state.user.username) return null
-      try {
-        let result = await userbase.init({ appId })
-        await dispatch({
-          type: 'setUser',
-          payload: { user: { ...result.user }, userbase },
-        })
-      } catch (error) {
-        console.log(error)
+    if (!state.user.username) {
+      const initialize = async () => {
+        try {
+          let result = await userbase.init({ appId })
+          await dispatch({
+            type: 'setUser',
+            payload: { user: { ...result.user }, userbase },
+          })
+        } catch (error) {
+          console.log(error)
+        }
       }
+      initialize()
     }
-    initialize()
-  })
+  }, [state.user.username, appId])
 
   return (
     <UserbaseContext.Provider value={{ ...state, setUser, resetUser }}>

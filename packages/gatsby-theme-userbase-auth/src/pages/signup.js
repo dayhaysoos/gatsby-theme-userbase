@@ -2,7 +2,6 @@
 import { jsx, Box, Label, Input, Button, Flex } from 'theme-ui'
 import { useState } from 'react'
 import { useUserbase } from '../context/userbase'
-import LogoutButton from '../components/logout-button'
 import { navigate } from 'gatsby'
 
 const Signup = () => {
@@ -42,7 +41,6 @@ const Signup = () => {
         />
         <Flex sx={{ justifyContent: 'space-evenly' }}>
           <Button>Submit</Button>
-          <LogoutButton />
         </Flex>
       </Box>
     </Box>
