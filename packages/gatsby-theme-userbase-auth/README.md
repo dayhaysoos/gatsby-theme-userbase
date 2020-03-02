@@ -6,7 +6,13 @@ A Gatsby that comes with an auth flow using [Userbase](https://userbase.com/)
 
 Create a Userbase account or log in.
 
-In your gatsby project, run, yarn add gatsby-theme-userbase-auth
+In your gatsby project, run 
+
+`npm install gatsby-theme-userbase-auth`
+
+or
+
+`yarn add gatsby-theme-userbase-auth`
 
 Set up your environment variables
 
