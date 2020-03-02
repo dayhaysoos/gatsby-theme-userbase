@@ -1,18 +1,19 @@
 /**@jsx jsx */
 import { jsx, Button } from 'theme-ui'
 import { useContext } from 'react'
-import { UserbaseContext } from '../context/userbase'
+import { useUserbase } from '../context/userbase'
 import { navigate } from 'gatsby'
 
 const LogoutButton = () => {
-  const { userbase } = useContext(UserbaseContext)
+  const { userbase, resetUser } = useUserbase()
 
   const handleSignout = () => {
     userbase.signOut()
-    window.location.reload()
+    resetUser()
+    navigate('/')
   }
 
-  return <Button onClick={handleSignout}>Logout</Button>
+  return <Button onClick={handleSignout}>Sign Out</Button>
 }
 
 export default LogoutButton

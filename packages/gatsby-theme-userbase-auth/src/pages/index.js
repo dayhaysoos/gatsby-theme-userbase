@@ -5,9 +5,7 @@ import { useUserbase } from '../context/userbase'
 
 const Index = () => {
   const { user } = useUserbase()
-  console.log('hi', user)
 
-  useUserbase()
   return (
     <Layout>
       <Flex sx={{ justifyContent: 'center' }}>

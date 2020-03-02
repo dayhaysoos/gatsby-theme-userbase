@@ -8,16 +8,14 @@ const LoginForm = () => {
   const { user, userbase, setUser } = useUserbase()
   const [userInput, setUserInput] = useState({ username: '', password: '' })
 
-  // userbase.signOut()
-
   const signIn = async e => {
     e.preventDefault()
     const { username, password } = userInput
 
     try {
       const result = await userbase.signIn({ username, password })
-      setUser(result)
-      navigate('/')
+      await setUser(result)
+      await navigate('/')
     } catch (error) {
       console.log(error)
       navigate('/')

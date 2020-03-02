@@ -7,17 +7,24 @@ import React, {
 } from 'react'
 import userbase from 'userbase-js'
 
+const initialState = {
+  user: {},
+  userbase: {},
+}
+
 const reducer = (user, action) => {
-  console.log('action', action)
   switch (action.type) {
     case 'setUser':
       return {
         ...user,
-        username: action.payload,
+        ...action.payload,
       }
 
-      break
-
+    case 'resetUser':
+      return {
+        ...user,
+        user: {},
+      }
     default:
       return user
   }
@@ -26,41 +33,40 @@ const reducer = (user, action) => {
 export const UserbaseContext = createContext()
 
 export const UserbaseProvider = ({ children, appId }) => {
-  const [user, setUser] = useState()
+  const [state, dispatch] = useReducer(reducer, initialState)
+
+  const setUser = ({ username }) =>
+    dispatch({ type: 'setUser', payload: { user: { username } } })
+
+  const resetUser = () => dispatch({ type: 'resetUser' })
 
   useEffect(() => {
     const initialize = async () => {
-      if (user) return null
+      if (state.user.username) return null
       try {
         let result = await userbase.init({ appId })
-        await setUser(result.user)
+        await dispatch({
+          type: 'setUser',
+          payload: { user: { ...result.user }, userbase },
+        })
       } catch (error) {
         console.log(error)
       }
     }
     initialize()
   }, [])
+
   return (
-    <UserbaseContext.Provider
-      value={useReducer(reducer, {
-        user: { ...user },
-        userbase,
-      })}
-    >
+    <UserbaseContext.Provider value={{ ...state, setUser, resetUser }}>
       {children}
     </UserbaseContext.Provider>
   )
 }
 
 export const useUserbase = () => {
-  console.log('wtf', useContext(UserbaseContext))
-  const [session, dispatch] = useContext(UserbaseContext)
-  console.log('session', session)
-  const { user, userbase } = session
-  const setUser = ({ username }) => dispatch({ type: 'setUser' })
+  const session = useContext(UserbaseContext)
+
   return {
-    user,
-    userbase,
-    setUser,
+    ...session,
   }
 }
