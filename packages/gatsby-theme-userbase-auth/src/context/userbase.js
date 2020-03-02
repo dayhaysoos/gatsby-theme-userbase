@@ -7,16 +7,18 @@ import React, {
 } from 'react'
 import userbase from 'userbase-js'
 
+const initialState = {
+  user: {},
+  userbase: {},
+}
+
 const reducer = (user, action) => {
-  console.log('action', action)
   switch (action.type) {
     case 'setUser':
       return {
         ...user,
-        username: action.payload,
+        ...action.payload,
       }
-
-      break
 
     default:
       return user
@@ -26,41 +28,42 @@ const reducer = (user, action) => {
 export const UserbaseContext = createContext()
 
 export const UserbaseProvider = ({ children, appId }) => {
-  const [user, setUser] = useState()
+  const [state, dispatch] = useReducer(reducer, initialState)
 
   useEffect(() => {
     const initialize = async () => {
-      if (user) return null
+      if (state.user.username) return null
       try {
         let result = await userbase.init({ appId })
-        await setUser(result.user)
+        await dispatch({
+          type: 'setUser',
+          payload: { user: { ...result.user }, userbase },
+        })
+
+        await console.log(state)
       } catch (error) {
         console.log(error)
       }
     }
     initialize()
   }, [])
+
+  console.log('stert', state)
   return (
-    <UserbaseContext.Provider
-      value={useReducer(reducer, {
-        user: { ...user },
-        userbase,
-      })}
-    >
+    <UserbaseContext.Provider value={state}>
       {children}
     </UserbaseContext.Provider>
   )
 }
 
 export const useUserbase = () => {
-  console.log('wtf', useContext(UserbaseContext))
-  const [session, dispatch] = useContext(UserbaseContext)
+  const session = useContext(UserbaseContext)
   console.log('session', session)
-  const { user, userbase } = session
-  const setUser = ({ username }) => dispatch({ type: 'setUser' })
-  return {
-    user,
-    userbase,
-    setUser,
-  }
+  // const { user, userbase } = session
+  // const setUser = ({ username }) => dispatch({ type: 'setUser' })
+  // return {
+  //   user,
+  //   userbase,
+  //   setUser,
+  // }
 }
