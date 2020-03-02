@@ -1,6 +1,5 @@
 /**@jsx jsx */
 import { jsx, Button } from 'theme-ui'
-import { useContext } from 'react'
 import { useUserbase } from '../context/userbase'
 import { navigate } from 'gatsby'
 

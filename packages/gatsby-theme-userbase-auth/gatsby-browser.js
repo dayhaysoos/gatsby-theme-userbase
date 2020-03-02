@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react'
-import Userbase from 'userbase-js'
+import React from 'react'
 import { UserbaseProvider } from './src/context/userbase'
 
 export const wrapRootElement = ({ element }, { APP_ID }) => {

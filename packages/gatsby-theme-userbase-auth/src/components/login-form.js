@@ -5,7 +5,7 @@ import { useUserbase } from '../context/userbase'
 import { navigate } from 'gatsby'
 
 const LoginForm = () => {
-  const { user, userbase, setUser } = useUserbase()
+  const { userbase, setUser } = useUserbase()
   const [userInput, setUserInput] = useState({ username: '', password: '' })
 
   const signIn = async e => {

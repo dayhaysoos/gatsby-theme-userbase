@@ -1,13 +1,12 @@
 /**@jsx jsx */
 import { jsx, Box, Label, Input, Button, Flex } from 'theme-ui'
-import { useState, useContext } from 'react'
+import { useState } from 'react'
 import { useUserbase } from '../context/userbase'
 import LogoutButton from '../components/logout-button'
-import Header from '../components/header'
 import { navigate } from 'gatsby'
 
 const Signup = () => {
-  const { user, userbase, setUser } = useUserbase()
+  const { userbase, setUser } = useUserbase()
   const [userInput, setUserInput] = useState({ username: '', password: '' })
 
   const signUp = async e => {

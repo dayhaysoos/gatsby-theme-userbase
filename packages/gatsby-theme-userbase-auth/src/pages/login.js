@@ -1,8 +1,6 @@
 /**@jsx jsx */
 import { jsx, Box } from 'theme-ui'
-import { useContext } from 'react'
 import LoginForm from '../components/login-form'
-import Layout from '../components/layout'
 
 const Login = () => {
   return (

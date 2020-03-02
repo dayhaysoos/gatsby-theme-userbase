@@ -8,8 +8,15 @@ const Index = () => {
 
   return (
     <Layout>
-      <Flex sx={{ justifyContent: 'center' }}>
-        {user.username ? <h1>ty for signing in</h1> : <h1>Please sign in</h1>}
+      <Flex
+        sx={{
+          justifyContent: 'center',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <h1>Welcome to the gatsby-theme-userbase-auth demo!</h1>
+        {user.username ? <h2>ty for signing in</h2> : <h2>Please sign in</h2>}
       </Flex>
     </Layout>
   )

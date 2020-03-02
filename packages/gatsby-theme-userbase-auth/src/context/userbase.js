@@ -1,10 +1,4 @@
-import React, {
-  createContext,
-  useReducer,
-  useContext,
-  useState,
-  useEffect,
-} from 'react'
+import React, { createContext, useReducer, useContext, useEffect } from 'react'
 import userbase from 'userbase-js'
 
 const initialState = {
@@ -54,7 +48,7 @@ export const UserbaseProvider = ({ children, appId }) => {
       }
     }
     initialize()
-  }, [])
+  })
 
   return (
     <UserbaseContext.Provider value={{ ...state, setUser, resetUser }}>
@@ -68,5 +62,6 @@ export const useUserbase = () => {
 
   return {
     ...session,
+    isLoggedIn: session.user.hasOwnProperty('username'),
   }
 }
