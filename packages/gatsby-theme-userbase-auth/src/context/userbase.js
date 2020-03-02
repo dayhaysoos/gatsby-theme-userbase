@@ -20,6 +20,11 @@ const reducer = (user, action) => {
         ...action.payload,
       }
 
+    case 'resetUser':
+      return {
+        ...user,
+        user: {},
+      }
     default:
       return user
   }
@@ -30,6 +35,11 @@ export const UserbaseContext = createContext()
 export const UserbaseProvider = ({ children, appId }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
+  const setUser = ({ username }) =>
+    dispatch({ type: 'setUser', payload: { user: { username } } })
+
+  const resetUser = () => dispatch({ type: 'resetUser' })
+
   useEffect(() => {
     const initialize = async () => {
       if (state.user.username) return null
@@ -39,8 +49,6 @@ export const UserbaseProvider = ({ children, appId }) => {
           type: 'setUser',
           payload: { user: { ...result.user }, userbase },
         })
-
-        await console.log(state)
       } catch (error) {
         console.log(error)
       }
@@ -48,9 +56,8 @@ export const UserbaseProvider = ({ children, appId }) => {
     initialize()
   }, [])
 
-  console.log('stert', state)
   return (
-    <UserbaseContext.Provider value={state}>
+    <UserbaseContext.Provider value={{ ...state, setUser, resetUser }}>
       {children}
     </UserbaseContext.Provider>
   )
@@ -58,12 +65,8 @@ export const UserbaseProvider = ({ children, appId }) => {
 
 export const useUserbase = () => {
   const session = useContext(UserbaseContext)
-  console.log('session', session)
-  // const { user, userbase } = session
-  // const setUser = ({ username }) => dispatch({ type: 'setUser' })
-  // return {
-  //   user,
-  //   userbase,
-  //   setUser,
-  // }
+
+  return {
+    ...session,
+  }
 }

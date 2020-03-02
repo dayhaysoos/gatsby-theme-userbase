@@ -7,7 +7,7 @@ import Header from '../components/header'
 import { navigate } from 'gatsby'
 
 const Signup = () => {
-  const { user, userbase } = useUserbase()
+  const { user, userbase, setUser } = useUserbase()
   const [userInput, setUserInput] = useState({ username: '', password: '' })
 
   const signUp = async e => {
@@ -16,13 +16,14 @@ const Signup = () => {
 
     try {
       const result = await userbase.signUp({ username, password })
+      setUser(result.user)
       navigate('/')
     } catch (error) {
       console.log(error)
     }
   }
   return (
-    <Box sx={{ maxWidth: 300 }}>
+    <Box sx={{ maxWidth: 300, margin: '0 auto' }}>
       <Box as="form" onSubmit={e => signUp(e)}>
         <Label>Username</Label>
         <Input
